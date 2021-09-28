@@ -1,7 +1,9 @@
 const multer         = require('multer')
-const { v4: uuidv4 } = require('uuid')
+const multerS3       = require('multer-s3')
+const { v4: uuid }   = require('uuid')
 const fs             = require('fs')
 const AWS            = require('aws-sdk')
+const env            = require('../env')
 
 const filesUploadLocalStorage = (req, res, next) => {
     const storage = multer.diskStorage({
@@ -21,10 +23,10 @@ const filesUploadLocalStorage = (req, res, next) => {
         filename: (req, file, callback) => {
             if (file.fieldname === "profilePics") {
                 let filetypePics = file.mimetype === 'image/png' ? 'png' : (file.mimetype === 'image/jpg' ? 'jpg' : (file.mimetype === 'image/jpeg' && 'jpeg'))
-                callback(null, `${uuidv4()}.${filetypePics}`)
+                callback(null, `${uuid()}.${filetypePics}`)
             } else {
                 let filetypePdf = file.mimetype === 'application/pdf' ? 'pdf' : (file.mimetype === 'image/jpg' ? 'jpg' : (file.mimetype === 'image/jpeg' && 'jpeg'))
-                callback(null, `${uuidv4()}.${filetypePdf}`)
+                callback(null, `${uuid()}.${filetypePdf}`)
             }
             
         }
@@ -60,38 +62,28 @@ const filesUploadLocalStorage = (req, res, next) => {
 
 const filesUploadS3 = (req, res, next) => {
     const s3 = new AWS.S3({
-        accessKeyId: process.env.AWS_ACCESS_KEY,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+        accessKeyId: env.aws.accessKeyId,
+        secretAccessKey: env.aws.secretAccessKey
     })
 
-    const storage = multer.diskStorage({
-        destination: (req, file, callback) => {
-            const path = 'tmp'
-
-            if (!fs.existsSync(path)){
-                fs.mkdirSync(path)
-            }
-
-            if (file.fieldname === "profilePics") { // if uploading resume
-                callback(null, (path))
-            } else { // else uploading image
-                callback(null, (path))
-            }
-        },
-        filename: (req, file, callback) => {
-            if (file.fieldname === "profilePics") {
-                let filetypePics = file.mimetype === 'image/png' ? 'png' : (file.mimetype === 'image/jpg' ? 'jpg' : (file.mimetype === 'image/jpeg' && 'jpeg'))
-                callback(null, `${uuidv4()}.${filetypePics}`)
+    const storageS3 = multerS3({
+        s3: s3,
+        bucket: env.aws.Bucket,
+        key: (req, file, callback) => {
+            if (file.fieldname == "profilePics") {
+                let fileExtPics = file.mimetype === 'image/png' ? 'png' : (file.mimetype === 'image/jpg' ? 'jpg' : (file.mimetype === 'image/jpeg' && 'jpeg'))
+                callback(null, `pictures/${uuid()}.${fileExtPics}`)
+            } else if (file.fieldname == "document") {
+                let fileExtPdf = 'pdf'
+                callback(null, `documents/${uuid()}.${fileExtPdf}`)
             } else {
-                let filetypePdf = file.mimetype === 'application/pdf' ? 'pdf' : (file.mimetype === 'image/jpg' ? 'jpg' : (file.mimetype === 'image/jpeg' && 'jpeg'))
-                callback(null, `${uuidv4()}.${filetypePdf}`)
+                callback('ERR_FIELDNAME', null)
             }
-            
         }
     })
 
     const upload = multer({
-        storage: storage,
+        storage: storageS3,
         fileFilter: (req, file, cb) => {
             if ( file.fieldname === 'profilePics' && file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" ) {
                 cb(null, true)
@@ -106,28 +98,13 @@ const filesUploadS3 = (req, res, next) => {
 
     upload(req, res, (err) => {
         if (err) {
-            console.log(new Error(err))
             return res.status(500).json({
                 code: err.code ? err.code : 'ERR_UPLOAD_FILE',
                 status: 'Error Upload File!',
                 message: err.msg ? err.msg : err
             })
         } else {
-            if (req.files.profilePics) {
-                console.log(req.files.profilePics[0].filename)
-            }
-
-            if (req.files.document) {
-                console.log(req.files.document[0].filename)
-            }
-
-            res.status(200).json({ test: 'test'})
-            // if ( req.files.profilePics || req.files.docuement ) {
-            //     const fileContent = fs.readFileSync(req.fi)
-            //     console.log('ada file nya')
-            // } else {
-            //     next()
-            // }
+            next()
         }
     })
 }
