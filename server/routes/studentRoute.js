@@ -6,6 +6,9 @@ module.exports = (app) => {
     app.route('/students')
         .get(Student.index)
 
+    app.route('/students/:sudentId')
+        .get(Student.details)
+
     app.route('/students')
         .post(filesUploadS3, Student.create)
 

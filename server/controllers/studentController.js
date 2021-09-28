@@ -118,3 +118,24 @@ exports.create = async (req, res) => {
         })
     }
 }
+
+exports.details = async (req, res) => {
+    try {
+        const studentId = req.params.studentId
+        const studentDetails = await studentModel.findOne({ where: { ...studentId } })
+        
+        res.status(200).json({
+            code: 200,
+            status: 'OK',
+            message: `get student detail for ${studentId} success.`,
+            data: studentDetails
+        })
+    } catch (error) {
+        console.log(new Error(err))
+        res.status(500).send({ 
+            code: '500',
+            status: 'SERVER_ERROR', 
+            message: 'Internal server error!' 
+        })
+    }
+}
