@@ -1,7 +1,8 @@
-const studentModel   = require('../models/students')
-const env            = require('../env')
-const AWS            = require('aws-sdk')
-const { v4: uuidv4 } = require('uuid')
+const studentModel    = require('../models/students')
+const majorModel      = require('../models/majors')
+const env             = require('../env')
+const AWS             = require('aws-sdk')
+const { v4: uuidv4 }  = require('uuid')
 
 const s3 = new AWS.S3({
     accessKeyId: env.aws.accessKeyId,
@@ -22,7 +23,13 @@ const delS3Object = (key) => new Promise(async (resolve, reject) => {
 
 exports.index = async (req, res) => {
     try {
-        const students = await studentModel.findAll()
+        const students = await studentModel.findAll({
+            include: [{
+                model: majorModel,
+                attributes: ['major_name'],
+                require: false
+            }]
+        })
         if (students.length > 0) {
             const resData = JSON.stringify(students)
             const data = JSON.parse(resData)
@@ -55,21 +62,21 @@ exports.create = async (req, res) => {
         const docData       = req.files.document && req.files.document[0] 
 
         if (picsData && docData) {
-            const uuid          = uuidv4()
+            const srudentId     = uuidv4()
             const fullName      = req.query.fullName ? req.query.fullName : (req.body.fullName ? req.body.fullName : req.params.fullName)
             const tglLahir      = req.query.tglLahir ? req.query.tglLahir : (req.body.tglLahir ? req.body.tglLahir : req.params.tglLahir)
             const gender        = req.query.gender ? req.query.gender : (req.body.gender ? req.body.gender : req.params.gender)
             const profilePics   = picsData.location
-            const majors        = req.query.majors ? req.query.majors : (req.body.majors ? req.body.majors : req.params.majors)
+            const majorsId      = req.query.majors ? req.query.majors : (req.body.majors ? req.body.majors : req.params.majors)
             const document      = docData.location
 
             const data = {
-                studentId       : uuid,
+                studentId       : srudentId,
                 fullName        : fullName,
                 tglLahir        : tglLahir,
                 gender          : gender,
                 profilePics     : profilePics,
-                majors          : majors,
+                majorsId        : majorsId,
                 document        : document
             }
 
@@ -122,7 +129,14 @@ exports.create = async (req, res) => {
 exports.details = async (req, res) => {
     try {
         const studentId = req.params.studentId
-        const studentDetails = await studentModel.findOne({ where: { ...studentId } })
+        const studentDetails = await studentModel.findOne({ 
+            where: { ...studentId },
+            include: [{
+                model: majorModel,
+                attributes: ['major_name'],
+                require: false
+            }]
+        })
         
         res.status(200).json({
             code: 200,

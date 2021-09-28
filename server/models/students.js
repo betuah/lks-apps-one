@@ -1,4 +1,5 @@
 const { db, Sequelize } = require('../config/database/sequelize')
+const majors = require('./majors')
 
 const StudentsModel = db.define('students', {
     studentId: {
@@ -22,7 +23,7 @@ const StudentsModel = db.define('students', {
     document: {
         type: Sequelize.STRING
     },
-    majors: {
+    majorsId: {
         type: Sequelize.INTEGER
     }
 },{
@@ -30,5 +31,7 @@ const StudentsModel = db.define('students', {
     createdAt: false,
     updatedAt: false
 })
+
+StudentsModel.belongsTo(majors, {foreignKey: 'majorsId'})
 
 module.exports = StudentsModel
