@@ -6,7 +6,7 @@ module.exports = (app) => {
     app.route('/students')
         .get(Student.index)
 
-    app.route('/students/:sudentId')
+    app.route('/students/:studentId')
         .get(Student.details)
 
     app.route('/students')

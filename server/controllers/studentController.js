@@ -34,23 +34,23 @@ exports.index = async (req, res) => {
             const resData = JSON.stringify(students)
             const data = JSON.parse(resData)
             res.status(200).json({ 
-                code: '200',
+                code: 200,
                 status: 'OK', 
                 message: 'Retrieve all data success.',
                 data: data
             })
         } else {
-            res.status(404).json({ 
-                code: '404',
-                status: 'NOT_FOUND', 
+            res.status(200).json({ 
+                code: 404,
+                status: 'ERR_DATA_NOT_FOUND', 
                 message: 'Data not found!' 
             })
         }
     } catch (err) {
         console.log(new Error(err))
-        res.status(500).send({ 
-            code: '500',
-            status: 'SERVER_ERROR', 
+        res.status(500).send({
+            code: 500,
+            status: 'ERR_SERVER_ERROR', 
             message: 'Internal server error!' 
         })
     }
@@ -129,21 +129,34 @@ exports.create = async (req, res) => {
 exports.details = async (req, res) => {
     try {
         const studentId = req.params.studentId
-        const studentDetails = await studentModel.findOne({ 
-            where: { ...studentId },
+
+        studentModel.findOne({ 
+            where: { studentId: studentId },
             include: [{
                 model: majorModel,
                 attributes: ['major_name'],
                 require: false
             }]
+        }).then(studentDetails => {
+            if (studentDetails) {
+                res.status(200).json({
+                    code: 200,
+                    status: 'OK',
+                    message: `get student detail for ${studentId} success.`,
+                    data: studentDetails
+                })
+            } else {
+                res.status(200).json({
+                    code: 404,
+                    status: 'ERR_DATA_NOT_FOUND',
+                    message: `Data not found!`,
+                })
+            }
+        }).catch(error => {
+            console.log(new Error(err))
         })
         
-        res.status(200).json({
-            code: 200,
-            status: 'OK',
-            message: `get student detail for ${studentId} success.`,
-            data: studentDetails
-        })
+        
     } catch (error) {
         console.log(new Error(err))
         res.status(500).send({ 
