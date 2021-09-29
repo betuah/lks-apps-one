@@ -74,3 +74,5 @@ if(conn) {
     console.log(`${env.host}:${env.port} cannot connect to the Database ${env.db_type}!`)
 }
 /* End Database Connection Check */
+
+module.exports = app
