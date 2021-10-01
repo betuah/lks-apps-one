@@ -61,6 +61,11 @@ typings/
 # Optional npm cache directory
 .npm
 
+# Client .gitignore
+Client/*.env
+Client/package-lock.json
+Client/build
+
 # Optional eslint cache
 .eslintcache
 
