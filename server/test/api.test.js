@@ -6,11 +6,65 @@ let app         = require('../app')
 const axios         = require('axios')
 const students      = require('../models/students')
 const { v4: uuid }  = require('uuid')
+const fs            = require('fs')
 
-chai.use(chaiHttp);
+chai.use(chaiHttp)
 chai.should()
 
 describe('Test API Endpoint', () => {
+
+    describe('POST /students', () => {
+        describe('Submit student data with fileupload', async () => {
+            let rawData = []
+
+            before( async () => {
+                await students.destroy({where: {}, truncate: true})
+
+                await axios.get('https://randomuser.me/api/?results=100&exc=login,registered,id,nat')
+                .then(async user => {
+                    const resData = user.data.results
+                    rawData = resData.map(item => {
+                        return {
+                            studentId   : uuid(),
+                            fullName    : `${item.name.first} ${item.name.last}`,
+                            tglLahir    : item.dob.date,
+                            gender      : item.gender,
+                            profilePics : __dirname + `/public/images/${item.gender}/${Math.floor(Math.random() * 6) + 1}.jpg`,
+                            majorsId    : Math.floor(Math.random() * 3) + 1,
+                            document    : __dirname + `/public/files/cv${Math.floor(Math.random() * 3) + 1}.pdf`,
+                        }
+                    })
+                }).catch(error => { throw new Error(error) })
+            })
+
+            after( async () => {
+                await students.destroy({where: {}, truncate: true})
+            })
+
+            it('- Response status should be success', async () => {
+                const tmpData = rawData[Math.floor(Math.random() * 100) + 1]
+
+                const res = await chai.request(app)
+                    .post('/students')
+                    .set('Content-Type', 'multipart/form-data')
+                    .field('fullName', `${tmpData.fullName}`)
+                    .field('tglLahir', `${tmpData.tglLahir}`)
+                    .field('gender', `${tmpData.gender}`)
+                    .field('mahorsId', `${tmpData.majorsId}`)
+                    .attach('profilePics', fs.readFileSync(`${tmpData.profilePics}`),'1.png')
+                    .attach('document', fs.readFileSync(`${tmpData.document}`),'cv.pdf')
+                    .then(res => {
+                        expect(res).to.have.status(200)
+                        expect(res.body).to.be.an('object')
+                        expect(res.body).to.have.property('data')
+                    })
+                    .catch(err => {
+                        throw(new Error(err))
+                    })
+            })
+        })
+    })
+
     describe('GET /students', () => {
         describe('It should to retrive all students data', async () => {
             before( async () => {
@@ -29,14 +83,15 @@ describe('Test API Endpoint', () => {
                             gender      : item.gender,
                             profilePics : item.picture.thumbnail,
                             majorsId    : Math.floor(Math.random() * 3) + 1,
-                            document    : item.picture.medium
+                            document    : item.picture.medium,
+                            status      : Math.floor(Math.random() * 3),
                         }
                     })
 
                     try {
                         await students.bulkCreate(data)
                     } catch (error) {
-                        throw new Error(err)
+                        throw new Error(error)
                     }
                 }).catch(error => { throw new Error(error) })
             })
@@ -245,4 +300,5 @@ describe('Test API Endpoint', () => {
             })
         })
     })
+
 })
