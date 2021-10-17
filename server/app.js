@@ -40,7 +40,9 @@ app.use(cookieParser())
 
 /* Start of Routing Modules */
 const studentRoute   = require('./routes/studentRoute')
+const majorsRoute    = require('./routes/majorsRoute')
 
+majorsRoute(app)
 studentRoute(app)
 /* End of Routing Modules */
 

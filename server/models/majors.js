@@ -11,6 +11,10 @@ const majorsModel = db.define('majors', {
     major_name: {
         type: Sequelize.STRING
     }
+},{
+    timestamps: false,
+    createdAt: false,
+    updatedAt: false
 })
 
 module.exports = majorsModel
