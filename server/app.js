@@ -16,10 +16,9 @@ app.disable("x-powered-by")
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.raw())
-app.use('/public', express.static(__dirname + '/public')) // Public directory
+app.use('/public', express.static(__dirname + '.../public')) // Public directory
 
-/* Dynamic CORS */
-/* Disable CORS
+/* Dynamic CORS 
 const whitelist = [`${env.client_host}`,`${env.client_host_prod}`]
 
 const options = {
@@ -33,7 +32,6 @@ const options = {
     credentials: true
 }
 app.use(cors(options)) 
-*/
 /* End Dynamic CORS */
 
 /* Start Cookie Settings */
