@@ -77,7 +77,8 @@ exports.create = async (req, res) => {
                 gender          : gender,
                 profilePics     : profilePics,
                 majorsId        : majorsId,
-                document        : document
+                document        : document,
+                status          : Math.floor(Math.random() * 3)
             }
 
             studentModel.create(data).then(data => {

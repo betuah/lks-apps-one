@@ -25,6 +25,9 @@ const StudentsModel = db.define('students', {
     },
     majorsId: {
         type: Sequelize.INTEGER
+    },
+    status: {
+        type: Sequelize.INTEGER
     }
 },{
     timestamps: false,
