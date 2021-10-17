@@ -301,4 +301,36 @@ describe('Test API Endpoint', () => {
         })
     })
 
+    describe('GET /majors', () => {
+        describe('It should to retrive all majors data', async () => {
+            it('- Response status should be success', async () => {
+                const res = await chai.request(app).get('/majors')
+
+                expect(res).to.have.status(200)
+            })
+            
+            it('- Response should be an object', async () => {
+                const res = await chai.request(app).get('/majors')
+
+                expect(res).to.have.status(200)
+                expect(res.body).to.be.an('object')
+            })
+
+            it('- Response should be have code, status, massage and data properties', async () => {
+                const res = await chai.request(app).get('/majors')
+
+                expect(res).to.have.status(200)
+                expect(res.body).to.have.property('code')
+                expect(res.body).to.have.property('status')
+                expect(res.body).to.have.property('data')
+            })
+
+            it('- Data property should be an array and cannot be empty', async () => {
+                const res = await chai.request(app).get('/majors')
+
+                expect(res).to.have.status(200)
+                expect(res.body.data).to.be.an('array')
+            })
+        })
+    })
 })
