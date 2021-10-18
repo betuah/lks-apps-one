@@ -63,12 +63,12 @@ if(conn) {
             const credentials = {key: privateKey, cert: certificate}
             const httpsApps   = https.createServer(credentials, app)
     
-            httpsApps.listen(port, () => console.log(`Server API listen on ${env.host}:${env.port}`))
+            httpsApps.listen(port, () => console.log(`Server API listen on YOUR_HOST:${env.port}`))
         } catch (error) {
             console.log(new Error(error))
         }
     } else {
-        app.listen(port, () => console.log(`Server API listen on ${env.host}:${env.port}`))
+        app.listen(port, () => console.log(`Server API listen on YOUR_HOST:${env.port}`))
     }
 } else {
     console.log(`${env.host}:${env.port} cannot connect to the Database ${env.db_type}!`)
