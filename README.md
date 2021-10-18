@@ -28,9 +28,16 @@ AWS_BUCKET_NAME=YOUR_AWS_BUCKET_NAME
 API_URL=http://localhost:8000
 ```
 
-## Running Server App
+## Running Server (API Backend)
 ```sh
 $ npm run start # dev value for Running development apps and start value for Running production apps
+
+```
+
+## Running Client (Front End)
+```sh
+$ npm run build # You need to build this client source for development
+$ npm run start # Start your client apps in server-side production mode
 
 ```
 
