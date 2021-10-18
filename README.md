@@ -40,5 +40,10 @@ $ npm run build # You need to build this client source for development
 $ npm run start # Start your client apps in server-side production mode
 
 ```
+### Generate Client
+> Gives you the ability to host your web application on any static hosting, the static source code will be generated in *dist folder*
+```sh
+$ npm run generate # Generate static source code
+```
 
 <hr>
