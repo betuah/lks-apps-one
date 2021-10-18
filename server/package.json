@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "start-prod": "pm2 start app.js"
   },
   "author": "Betuah Anugerah",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "mysql2": "^2.3.0",
     "node-rsa": "^1.1.1",
     "nodemailer": "^6.6.5",
+    "pm2": "^5.1.2",
     "redis": "^3.1.2",
     "reverse-md5": "0.0.5",
     "sequelize": "^6.6.5",
