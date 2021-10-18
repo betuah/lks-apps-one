@@ -8,7 +8,7 @@ services:
             - 6379:6379
         networks: 
             - lks_network
-        command: redis-server --requirepass br4v0Sth!ingS!@#
+        command: redis-server --requirepass YOUR_REDIS_PASSWORD
 
 networks: 
     lks_network:
