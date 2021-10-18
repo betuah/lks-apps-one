@@ -119,6 +119,7 @@ exports.create = async (req, res) => {
             })
         }
     } catch (err) {
+        console.log(new Error(err))
         res.status(500).json({ 
             code: '500',
             status: 'SERVER_ERROR', 
