@@ -30,7 +30,7 @@ API_URL=YOUR_API_BACKEND_SERVER_HOST # For example http://localhost:8000
 
 ## Running Server (API Backend)
 ```sh
-$ npm run start # dev value for Running development apps and start value for Running production apps
+$ npm run start-prod # dev value for Running development apps and start value for Running production apps
 
 ```
 
