@@ -1,11 +1,11 @@
 # LKS APPS 01
 
-> **Desc :** Deploy this apps to your aws.
+> **Desc :** Deploy this apps to your aws. Create a scalable, available, reliable and secure infrastructure for this apps.
 
 <hr>
 
 ## Server Config Setup
-> Create .env file in Server folder
+> Create .env file in Server root folder
 ```sh
 PORT=8000
 DB_TYPE=YOUR_DATABASE_TYPE
@@ -22,9 +22,15 @@ AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS
 AWS_BUCKET_NAME=YOUR_AWS_BUCKET_NAME
 ```
 
+## Client Config Setup
+> Create .env file in Client root folder
+```sh
+API_URL=http://localhost:8000
+```
+
 ## Running Server App
 ```sh
-$ npm run dev # dev for Running development apps and prod for Running production apps
+$ npm run start # dev value for Running development apps and start value for Running production apps
 
 ```
 
