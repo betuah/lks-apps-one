@@ -25,7 +25,7 @@ AWS_BUCKET_NAME=YOUR_AWS_BUCKET_NAME
 ## Client Config Setup
 > Create .env file in Client root folder
 ```sh
-API_URL=http://localhost:8000
+API_URL=YOUR_API_BACKEND_SERVER_HOST # For example http://localhost:8000
 ```
 
 ## Running Server (API Backend)
