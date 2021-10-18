@@ -7,7 +7,8 @@
     "test": "mocha",
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "start-prod": "pm2 start app.js"
+    "start-prod": "pm2 start app.js",
+    "stop-prod": "pm2 stop app"
   },
   "author": "Betuah Anugerah",
   "license": "ISC",
