@@ -21,9 +21,12 @@ app.use(express.raw())
 app.use('/public', express.static(__dirname + '/public')) // Public directory
 
 /* Start Logging */
-const log_path = env.log_path || path.join(__dirname, 'log')
+const log_path = env.log_path || path.join(__dirname, 'logs')
 
-console.log(log_path)
+// if log path not exist, log_path folder will be created
+if (!fs.existsSync(log_path)) {
+    fs.mkdirSync(log_path, { recursive: true })
+}
 
 // Log all error requests status
 app.use(morgan('combined', {
