@@ -5,7 +5,9 @@ const express    = require('express'),
     helmet       = require('helmet'),
     cookieParser = require('cookie-parser'),
     env          = require('./env'),
-    fs           = require("fs"),
+    morgan       = require('morgan'),
+    fs           = require('fs'),
+    path         = require('path')
     https        = require('https'),
     port         = env.port || 8000
 
@@ -16,7 +18,20 @@ app.disable("x-powered-by")
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.raw())
-app.use('/public', express.static(__dirname + '.../public')) // Public directory
+app.use('/public', express.static(__dirname + '/public')) // Public directory
+
+/* Start Logging */
+app.use(morgan('combined', {
+    skip: (req, res) => { return res.statusCode < 400 },
+    stream: fs.createWriteStream(path.join(__dirname, 'log', 'error.log'), { flags: 'a' })
+}))
+
+// log all requests to access.log
+app.use(morgan('combined', {
+    skip: (req, res) => { return res.statusCode > 400 },
+    stream: fs.createWriteStream(path.join(__dirname, 'log', 'access.log'), { flags: 'a' })
+}))
+/* End Logging */
 
 /* Dynamic CORS 
 const whitelist = [`${env.client_host}`,`${env.client_host_prod}`]
@@ -56,7 +71,7 @@ if (env.db_type === 'mongodb') {
 }
 
 if(conn) {
-    if (env.node_env === 'production') {
+    if (env.node_env === 'production-https') {
         try {
             const privateKey  = fs.readFileSync(`${env.httpsPrivateKey}`, 'utf8')
             const certificate = fs.readFileSync(`${env.httpsCertificate}`, 'utf8')
