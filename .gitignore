@@ -9,7 +9,6 @@ lerna-debug.log*
 # Server .gitignore
 Server/node_modules/
 Server/*.env
-Server/public/*
 Server/tmp/*
 Server/package-lock.json
 Server/ssl/*
