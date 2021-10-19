@@ -21,15 +21,20 @@ app.use(express.raw())
 app.use('/public', express.static(__dirname + '/public')) // Public directory
 
 /* Start Logging */
+const log_path = env.log_path || path.join(__dirname, 'log')
+
+console.log(log_path)
+
+// Log all error requests status
 app.use(morgan('combined', {
     skip: (req, res) => { return res.statusCode < 400 },
-    stream: fs.createWriteStream(path.join(__dirname, 'log', 'error.log'), { flags: 'a' })
+    stream: fs.createWriteStream(path.join(log_path , 'error.log'), { flags: 'a' })
 }))
 
-// log all requests to access.log
+// Log all success request status
 app.use(morgan('combined', {
     skip: (req, res) => { return res.statusCode > 400 },
-    stream: fs.createWriteStream(path.join(__dirname, 'log', 'access.log'), { flags: 'a' })
+    stream: fs.createWriteStream(path.join(log_path, 'access.log'), { flags: 'a' })
 }))
 /* End Logging */
 

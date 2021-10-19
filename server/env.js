@@ -12,6 +12,7 @@ const env = {
     encryption_key: process.env.ENCRYPTION_KEY,
     firebase_url: process.env.FIREBASE_URL,
     db_type: process.env.DB_TYPE,
+    log_path: process.env.LOG_PATH,
     aws: {
         accessKeyId: process.env.AWS_ACCESS_KEY,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
