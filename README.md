@@ -7,6 +7,7 @@
 ## Server Config Setup
 > Create .env file in Server root folder
 ```sh
+NODE_ENV=production
 PORT=8000
 DB_TYPE=YOUR_DATABASE_TYPE
 MYSQL_DB=YOUR_MYSQL_DATABASE_NAME
@@ -30,7 +31,8 @@ API_URL=YOUR_API_BACKEND_SERVER_HOST # For example http://localhost:8000
 
 ## Running Server (API Backend)
 ```sh
-$ npm run start-prod # dev value for Running development apps and start value for Running production apps
+$ npm run start-prod # Start server on production mode
+$ npm run stop-prod # Stop server on production mode
 
 ```
 
@@ -40,7 +42,7 @@ $ npm run build # You need to build this client source for development
 $ npm run start # Start your client apps in server-side production mode
 
 ```
-### Generate Client
+### Generate Static source Client (Front End)
 > Gives you the ability to host your web application on any static hosting, the static source code will be generated in *dist folder*
 ```sh
 $ npm run generate # Generate static source code
