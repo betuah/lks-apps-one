@@ -1,17 +1,21 @@
 const redis = require("redis")
 const env   = require('../env')
 const fs    = require("fs")
+const ssl   = {}
 
 const config = {
     port      : env.redis.port,             
-    host      : `${env.redis.host}`,        
-    password  : `${env.redis.password}`,    
+    host      : `${env.redis.host}`
 }
 
-const ssl = {
-    tls       : {
-        // key  : fs.readFileSync(`${env.httpsPrivateKey}`, 'utf8'),  
-        // cert : fs.readFileSync(`${env.httpsCertificate}`, 'utf8')
+if ( env.redis.password ) config["password"] = env.redis.password
+
+if (env.node_env === 'production-https') {
+    ssl = {
+        tls       : {
+            key  : fs.readFileSync(`${env.httpsPrivateKey}`, 'utf8'),  
+            cert : fs.readFileSync(`${env.httpsCertificate}`, 'utf8')
+        }
     }
 }
 
