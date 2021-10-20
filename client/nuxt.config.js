@@ -20,6 +20,7 @@ export default {
   },
 
   target: 'static',
+  telemetry: false,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
