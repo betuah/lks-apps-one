@@ -114,16 +114,7 @@
         { text: 'Status', value: 'status', class: "success--text font-weight-bold" },
         { text: 'Actions', value: 'actions', sortable: false}
       ],
-      desserts: [
-        {
-          id: 'asdibq3r239f2@E',
-          nama: 'Betuah Anugerah',
-          tglLahir: '27 Juli 1995',
-          gender: 'Male',
-          majors: 'Information Engineering',
-          status: '1'
-        }
-      ],
+      desserts: [],
       editedIndex: -1,
       detailsItem: {},
       defaultItem: {
