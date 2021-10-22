@@ -1,6 +1,6 @@
 const Student           = require('../controllers/studentController')
 const { filesUploadS3 } = require('../middlewares/uploadMiddleware')
-const redisCache        = require('../middlewares/cacheMiddleware')
+const { redisCache }    = require('../middlewares/cacheMiddleware')
 
 module.exports = (app) => {
     

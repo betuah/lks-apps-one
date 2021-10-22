@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
     "firebase-admin": "^9.11.1",
+    "flat-cache": "^3.0.4",
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.3.0",
