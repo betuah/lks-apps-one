@@ -26,8 +26,11 @@ CACHE_PATH=YOUR_CACHE_PATH_FILE_LOCATION_STORE
 ```
 ## Running Server (API Backend)
 ```sh
-$ npm run start-prod # Start server on production mode
-$ npm run stop-prod # Stop server on production mode
+# Start server on production mode
+$ npm run start-prod 
+
+# Stop server on production mode
+$ npm run stop-prod 
 ```
 
 <hr>
@@ -42,14 +45,18 @@ API_URL=YOUR_API_BACKEND_SERVER_HOST # For example http://localhost:8000
 
 ### 1st Option - Server Deployment
 ```sh
-$ npm run build # Firstly You need to run this command to create .nuxt directory with everything inside ready to start
-$ npm run start # Start your client apps in server-side production mode
+# Firstly You need to run this command to create .nuxt directory with everything inside ready to start
+$ npm run build 
+
+# Start your client apps in server-side production mode
+$ npm run start 
 
 ```
 ### 2nd Option - Static Deployment (Pre-rendered)
 > Gives you the ability to host your web application on any static hosting, the static source code will be generated in *dist folder*
 ```sh
-$ npm run generate # Generate static source code
+# Generate static source code
+$ npm run generate 
 ```
 
 <hr>
