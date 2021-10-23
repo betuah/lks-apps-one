@@ -56,7 +56,9 @@ $ npm run start
 > Gives you the ability to host your web application on any static hosting, the static source code will be generated in *dist folder*
 ```sh
 # Generate static source code
-$ npm run generate 
+# Use --prefix <your_path> for specific path and use --quite or --slient for suppressing the output of npm
+$ npm run generate
+
 ```
 
 <hr>
