@@ -5,8 +5,8 @@ services:
         build: 
             context: .
             dockerfile: Dockerfile
-        image: betuah/sthing_server:release
-        container_name: sthing_server
+        image: betuah/apps_server:release
+        container_name: apps_server
         env_file: dev.env
         volumes: 
             - ./public:/usr/src/app/public
