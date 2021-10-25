@@ -62,11 +62,13 @@ app.use(cookieParser())
 /* End Cookie Settings */
 
 /* Start of Routing Modules */
+const indexRoute     = require('./routes/indexRoute')
 const studentRoute   = require('./routes/studentRoute')
 const majorsRoute    = require('./routes/majorsRoute')
 
 majorsRoute(app)
 studentRoute(app)
+indexRoute(app)
 /* End of Routing Modules */
 
 /* Start Database Connection Check */
