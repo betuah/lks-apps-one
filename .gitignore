@@ -8,6 +8,9 @@ yarn-error.log*
 lerna-debug.log*
 init_mongo.js
 
+# Exam .gitignore
+exam/ssl/rds-combined-ca-bundle.pem
+
 # Server .gitignore
 Server/node_modules/
 Server/*.env
