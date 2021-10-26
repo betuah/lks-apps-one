@@ -69,7 +69,7 @@ indexRoute(app)
 
 /* Start Database Connection Check */
 let conn
-if (env.db_type === 'mongodb') {
+if (env.db_type === 'mongodb' || env.db_type === 'mongodb_aws') {
     conn = require('./config/database/mongoose')
 } else {
     const { dbConn } = require('./config/database/sequelize')
