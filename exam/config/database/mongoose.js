@@ -3,7 +3,7 @@ const fs        = require('fs')
 const path      = require('path')
 const env       = require('../../env')
 
-const clusterUrl = `mongodb://${env.mongoose.username}:${env.mongoose.password}@${env.mongoose.host}:27017/${env.mongoose.database}?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false`
+const clusterUrl = `mongodb://${env.mongoose.username}:${env.mongoose.password}@${env.mongoose.host}:${env.mongoose.port || '27017'}/${env.mongoose.database}?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false`
 const ca = `${path.join(__dirname, `../../ssl/${ env.mongoose.cert || 'rds-combined-ca-bundle.pem'}`)}`
 
 let mongoConn
