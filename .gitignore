@@ -10,6 +10,10 @@ init_mongo.js
 
 # Exam .gitignore
 exam/ssl/rds-combined-ca-bundle.pem
+exam/node_modules/
+exam/*.env
+exam/tmp/*
+exam/package-lock.json
 
 # Server .gitignore
 Server/node_modules/
@@ -17,6 +21,7 @@ Server/*.env
 Server/tmp/*
 Server/package-lock.json
 Server/ssl/*
+Server/logs/*
 
 # Node Modules
 .node_modules/
