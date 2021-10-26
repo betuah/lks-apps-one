@@ -5,12 +5,13 @@ module.exports = (app) => {
     app.route('/')
         .get(indexController.index)
 
-    app.route('/exam')
+    app.route('/quiz')
         .get(indexController.getAllData)
 
-    app.route('/exam/init')
+    app.route('/init')
         .get(indexController.create)
     
-    app.route('/exam/flush')
+    app.route('/flush')
         .get(indexController.flush)
+
 }

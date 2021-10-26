@@ -1,7 +1,7 @@
 const quizModel = require('../models/quiz')
 
 exports.index = async (req, res) => {
-    res.status(200).send('Hello Exam public API here :D! \n\nList of API Endpoint :\n- /exam = List of all exam data \n- /init = Initial exam data \n- /flush = Remove all data.')
+    res.status(200).send('Hello Exam public API Entry point here :D! \n\nList of API Endpoint :\n- /exam = List of all exam data \n- /init = Initial exam data \n- /flush = Remove all data.')
 }
 
 exports.getAllData = async (req, res) => {
@@ -61,6 +61,83 @@ exports.create = async (req, res) => {
                 {
                     quizId: 3,
                     quizTitle: "Quiz number 3",
+                    options: [
+                        { optionId: "A", option: "options A" },
+                        { optionId: "B", option: "options B" },
+                        { optionId: "C", option: "options C" },
+                        { optionId: "D", option: "options D" }
+                    ],
+                    answer: "D"
+                },
+                {
+                    quizId: 4,
+                    quizTitle: "Quiz number 4",
+                    options: [
+                        { optionId: "A", option: "options A" },
+                        { optionId: "B", option: "options B" },
+                        { optionId: "C", option: "options C" },
+                        { optionId: "D", option: "options D" }
+                    ],
+                    answer: "D"
+                },
+                {
+                    quizId: 5,
+                    quizTitle: "Quiz number 5",
+                    options: [
+                        { optionId: "A", option: "options A" },
+                        { optionId: "B", option: "options B" },
+                        { optionId: "C", option: "options C" },
+                        { optionId: "D", option: "options D" }
+                    ],
+                    answer: "D"
+                },
+                {
+                    quizId: 6,
+                    quizTitle: "Quiz number 6",
+                    options: [
+                        { optionId: "A", option: "options A" },
+                        { optionId: "B", option: "options B" },
+                        { optionId: "C", option: "options C" },
+                        { optionId: "D", option: "options D" }
+                    ],
+                    answer: "D"
+                },
+                {
+                    quizId: 7,
+                    quizTitle: "Quiz number 7",
+                    options: [
+                        { optionId: "A", option: "options A" },
+                        { optionId: "B", option: "options B" },
+                        { optionId: "C", option: "options C" },
+                        { optionId: "D", option: "options D" }
+                    ],
+                    answer: "D"
+                },
+                {
+                    quizId: 8,
+                    quizTitle: "Quiz number 8",
+                    options: [
+                        { optionId: "A", option: "options A" },
+                        { optionId: "B", option: "options B" },
+                        { optionId: "C", option: "options C" },
+                        { optionId: "D", option: "options D" }
+                    ],
+                    answer: "D"
+                },
+                {
+                    quizId: 9,
+                    quizTitle: "Quiz number 9",
+                    options: [
+                        { optionId: "A", option: "options A" },
+                        { optionId: "B", option: "options B" },
+                        { optionId: "C", option: "options C" },
+                        { optionId: "D", option: "options D" }
+                    ],
+                    answer: "D"
+                },
+                {
+                    quizId: 10,
+                    quizTitle: "Quiz number 10",
                     options: [
                         { optionId: "A", option: "options A" },
                         { optionId: "B", option: "options B" },
