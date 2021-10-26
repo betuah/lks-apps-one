@@ -52,7 +52,7 @@ AWS_BUCKET_NAME=YOUR_AWS_BUCKET_NAME
 LOG_PATH=YOUR_LOG_FOLDER_LOCATION
 CACHE_PATH=YOUR_CACHE_PATH_FILE_LOCATION_STORE
 ```
-## Running API Server (API Backend)
+## Running API Server (Private API)
 ```sh
 # Start server on production mode
 $ npm run start-prod 
@@ -78,7 +78,7 @@ MONGO_CERT=YOUR_MONGO_CERT # The cert location is in ssl folder
 LOG_PATH=YOUR_LOG_FOLDER_LOCATION
 CACHE_PATH=YOUR_CACHE_PATH_FILE_LOCATION_STORE
 ```
-## Running Exam Service (API Backend)
+## Running Exam Service (Public API)
 ```sh
 # Start Exam Service on production mode
 $ npm run start-prod 
