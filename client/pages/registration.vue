@@ -176,6 +176,7 @@
                             prepend-inner-icon="attachment"
                             label="File input"
                             required
+                            show-size
                             @change="onFileUpload"
                         ></v-file-input>
                     </div>

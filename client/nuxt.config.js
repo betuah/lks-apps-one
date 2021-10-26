@@ -55,7 +55,8 @@ export default {
   },
 
   proxy: {
-    '/api/': { target: `${process.env.API_URL}`, pathRewrite: {'^/api/': ''}, changeOrigin: true }
+    '/api/': { target: `${process.env.API_URL}`, pathRewrite: {'^/api/': ''}, changeOrigin: true },
+    '/apiv2/': { target: `${process.env.API_EXAM_URL}`, pathRewrite: {'^/apiv2/': ''}, changeOrigin: true }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

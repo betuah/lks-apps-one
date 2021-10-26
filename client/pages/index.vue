@@ -60,7 +60,7 @@ export default {
       this.$router.push('/registration')
     },
     exam() {
-      this.$router.push('/exam')
+      this.$router.push('/quiz')
     }
   },
 }
