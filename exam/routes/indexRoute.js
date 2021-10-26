@@ -8,9 +8,9 @@ module.exports = (app) => {
     app.route('/exam')
         .get(indexController.getAllData)
 
-    app.route('/init')
+    app.route('/exam/init')
         .get(indexController.create)
     
-    app.route('/flush')
+    app.route('/exam/flush')
         .get(indexController.flush)
 }

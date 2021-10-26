@@ -7,7 +7,20 @@ exports.index = async (req, res) => {
 exports.getAllData = async (req, res) => {
     try {
         quizModel.find({}).then((data) => {
-            res.status(200).json(data)
+            if (data.length > 0) {
+                res.status(200).json({ 
+                    code: 200,
+                    status: 'OK', 
+                    message: 'Retrieve all data success.',
+                    data: data
+                })
+            } else {
+                res.status(200).json({ 
+                    code: 404,
+                    status: 'ERR_DATA_NOT_FOUND', 
+                    message: 'Data not found!' 
+                })
+            }
         }).catch((err) => {
             res.status(500).json({ status: "Error", code: "500", msg: "Internal Server Error"})
         })
