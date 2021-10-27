@@ -4,7 +4,7 @@
       <v-col cols="8">
         <v-dialog v-model="docs" max-width="600px">
           <v-card elevation="3" class="col-12">
-            <iframe src="https://lks-doc.s3.amazonaws.com/teks+penyerahan+CPP.pdf" width="100%" height="550px"></iframe>
+            <iframe :src="`${detailsItem.document}`" width="100%" height="550px"></iframe>
             <v-card-actions class="d-flex flex-row justify-end">
               <v-btn right text color="error" @click="closeModal('docs')">
                 CLOSE
