@@ -2,16 +2,16 @@ const indexController  = require('../controllers/indexController')
 
 module.exports = (app) => {
     
-    app.route('/')
+    app.route('/exam')
         .get(indexController.index)
 
-    app.route('/quiz')
+    app.route('/exam/quiz')
         .get(indexController.getAllData)
 
-    app.route('/init')
+    app.route('/exam/init')
         .get(indexController.create)
     
-    app.route('/flush')
+    app.route('/exam/flush')
         .get(indexController.flush)
 
 }
