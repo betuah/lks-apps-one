@@ -69,11 +69,13 @@ const filesUploadS3 = (req, res, next) => {
     const storageS3 = multerS3({
         s3: s3,
         bucket: env.aws.Bucket,
+        contentType: multerS3.AUTO_CONTENT_TYPE,
         key: (req, file, callback) => {
             if (file.fieldname == "profilePics") {
                 let fileExtPics = file.mimetype === 'image/png' ? 'png' : (file.mimetype === 'image/jpg' ? 'jpg' : (file.mimetype === 'image/jpeg' && 'jpeg'))
                 callback(null, `pictures/${uuid()}.${fileExtPics}`)
             } else if (file.fieldname == "document") {
+                console.log(file.mimetype)
                 let fileExtPdf = 'pdf'
                 callback(null, `documents/${uuid()}.${fileExtPdf}`)
             } else {
