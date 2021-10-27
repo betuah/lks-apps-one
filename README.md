@@ -8,6 +8,7 @@
 > Create .env file in Client root folder
 ```sh
 API_URL=YOUR_API_BACKEND_SERVER_HOST # For example http://localhost:8000
+API_EXAM_URL=YOUR_API_BACKEND_SERVER_HOST # For example http://localhost:9000/exam
 ```
 ## Running Client (Front End)
 > Client service has two options for deployment.
