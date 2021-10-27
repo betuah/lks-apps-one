@@ -81,10 +81,10 @@ CACHE_PATH=YOUR_CACHE_PATH_FILE_LOCATION_STORE
 ## Exam API Endpoint
 | API Endppint                               | Description                         | 
 | ------------------------------------- | ----------------------------------- | 
-| ***GET http://exam.example.com/exam"*** | Entry point API. |
-| ***GET http://exam.example.com/exam/quiz*** | Quiz data API Endpoint. |
-| ***GET http://exam.example.com/exam/init*** | Create exam quiz dummy data. |
-| ***GET http://exam.example.com/exam/flush*** | Flush exam quiz dummy data. |
+| ***GET "http://exam.example.com/exam"*** | Entry point API. |
+| ***GET "http://exam.example.com/exam/quiz"*** | Quiz data API Endpoint. |
+| ***GET "http://exam.example.com/exam/init"*** | Create exam quiz dummy data. |
+| ***GET "http://exam.example.com/exam/flush"*** | Flush exam quiz dummy data. |
 
 ## Running Exam Service (Public API)
 ```sh
