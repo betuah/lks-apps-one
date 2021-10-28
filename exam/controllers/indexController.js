@@ -1,7 +1,7 @@
 const quizModel = require('../models/quiz')
 
 exports.index = async (req, res) => {
-    res.status(200).send('Hello Exam public API Entry point here :D! \n\nList of API Endpoint :\n- /exam = List of all exam data \n- /init = Initial exam data \n- /flush = Remove all data.')
+    res.status(200).send('Hello Exam public API Entry point here :D! \n\nList of API Endpoint :\n- /exam/quiz = List of all exam data \n- /exam/init = Initial exam data \n- /exam/flush = Remove all data.')
 }
 
 exports.getAllData = async (req, res) => {
